@@ -1,0 +1,36 @@
+name: Nova
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    macOS: "13.0"
+  developmentLanguage: ja
+  createIntermediateGroups: true
+
+targets:
+  Nova:
+    type: application
+    platform: macOS
+    sources:
+      - path: NOVA
+        excludes:
+          - "Info.plist"
+          - "Nova.entitlements"
+    info:
+      path: NOVA/Info.plist
+    entitlements:
+      path: NOVA/Nova.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.Nova
+        PRODUCT_NAME: Nova
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+        SWIFT_VERSION: "5.9"
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_HARDENED_RUNTIME: YES
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+        FRAMEWORK_SEARCH_PATHS: "$(inherited) $(PROJECT_DIR)/Frameworks"
+        COMBINE_HIDPI_IMAGES: YES
+    dependencies:
+      - framework: Frameworks/VLCKit.xcframework
+        embed: true
+        codeSign: true
